@@ -18,3 +18,5 @@ General notes (on going):
 	-In order to control an object, we need to store the reference to the object, and we can do it in Start()  
 		start vs awaken, start is called once in script life time, awake is called when script object is  
 		initialized, whether the script is enableded not. This can happen later in the game's life time.  
+	-set animator parameter using the animator reference in your script to trigger animations and change animation  
+		properties
