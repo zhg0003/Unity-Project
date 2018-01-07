@@ -1,4 +1,4 @@
-A simple 2d project that helps me navigating through unity GUI efficiently, understanding 
+A simple 2d project that helps me navigating through unity GUI efficiently, understanding  
 	playerControl script, 
 	physics script,
 	animation creation, 
