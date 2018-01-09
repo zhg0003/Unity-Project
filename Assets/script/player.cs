@@ -9,36 +9,70 @@ public class player : PhysicsObject {
     private bool facing = true; //true means character is facing right
     private SpriteRenderer spriteRenderer;
     private Animator animator;
-    private int chealth;
-    private int maxhealth;
-
+    public string objectName;
      // Use this for initialization
     void Awake () {
-        chealth = 100;
-        maxhealth = 100;
         print("starting player");
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        objectName = spriteRenderer.name;
+        print("this player's name is " + objectName);
     }
 
-    // Update is called once per frame
-    protected override void ComputeVelocity()
+    private void setAnimation(string name)
     {
-        Vector2 move = Vector2.zero;
+        animator.SetBool("jump", Input.GetButtonDown("Jump"+name));
+        animator.SetBool("jump_done", Input.GetButtonUp("Jump"+name));
+        //animator.SetFloat("run", Mathf.Abs(velocity.x) / maxSpeed);
 
-        move.x = Input.GetAxis("Horizontal");
+        animator.SetBool("run", Input.GetButton("Horizontal"+name));
+        animator.SetBool("runbuttonup", Input.GetButtonUp("Horizontal"+name));
+
+        animator.SetBool("crouch_down", Input.GetKey("down"));
+        animator.SetBool("crouch_up", Input.GetKeyUp("down"));
+
+        animator.SetBool("attack", Input.GetButtonDown("Fire"+name));
+    }
+
+    private void compute(string name, ref Vector2 move)
+    {
+        move.x = Input.GetAxis("Horizontal"+name);
         //print("move.x is " + move.x);
-        if (Input.GetButtonDown("Jump") && grounded)
+        if (Input.GetButtonDown("Jump"+name) && grounded)
         {
             velocity.y = jumpTakeOffSpeed;
         }
-        else if (Input.GetButtonUp("Jump")) //canceling jump if jump button is let go
+        else if (Input.GetButtonUp("Jump"+name)) //canceling jump if jump button is let go
         {
             if (velocity.y > 0)
             {
                 velocity.y = velocity.y * 0.5f;
             }
         }
+    }
+    // Update is called once per frame
+    protected override void ComputeVelocity()
+    {
+        Vector2 move = Vector2.zero; ;
+
+        //move.x = Input.GetAxis("Horizontal_p1");
+        ////print("move.x is " + move.x);
+        //if (Input.GetButtonDown("Jump_p1") && grounded)
+        //{
+        //    velocity.y = jumpTakeOffSpeed;
+        //}
+        //else if (Input.GetButtonUp("Jump_p1")) //canceling jump if jump button is let go
+        //{
+        //    if (velocity.y > 0)
+        //    {
+        //        velocity.y = velocity.y * 0.5f;
+        //    }
+        //}
+
+        if (objectName == "player")
+            compute("_p1", ref move);
+        if (objectName == "player 2")
+            compute("_p2", ref move);
 
         //bool flipSprite = (spriteRenderer.flipX ? (move.x > 0.01f) : (move.x < 0.01f));
         // bool flipSprite = false;
@@ -70,17 +104,10 @@ public class player : PhysicsObject {
         //print("move x and flip is " + move.x + " " + flipSprite);
 
         //setting up animation triggers in the animator component
-        animator.SetBool("jump", Input.GetButtonDown("Jump"));
-        animator.SetBool("jump_done", Input.GetButtonUp("Jump"));
-        //animator.SetFloat("run", Mathf.Abs(velocity.x) / maxSpeed);
-
-        animator.SetBool("run", Input.GetButton("Horizontal"));
-        animator.SetBool("runbuttonup", Input.GetButtonUp("Horizontal"));
-
-        animator.SetBool("crouch_down", Input.GetKey("down"));
-        animator.SetBool("crouch_up", Input.GetKeyUp("down"));
-
-        animator.SetBool("attack", Input.GetKeyDown("s"));
+        if(objectName == "player")
+            setAnimation("_p1");
+        if (objectName == "player 2")
+            setAnimation("_p2");
 
         targetVelocity = move * maxSpeed;
     }

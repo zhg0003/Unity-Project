@@ -13,7 +13,6 @@ public class health : MonoBehaviour {
 	void Awake () {
         maxHealth = 100;
         currentHealth = startingHealth;
-        print("health script start");
         //healthBar = GetComponent<Slider>();
         healthBar.value = currentHealth / maxHealth;
     }
@@ -29,6 +28,5 @@ public class health : MonoBehaviour {
         }
         if (currentHealth == 0)
             print("dead");
-
 	}
 }
