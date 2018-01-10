@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//code url: https://unity3d.com/learn/tutorials/topics/2d-game-creation/horizontal-movement?playlist=17093
 public class player : PhysicsObject {
 
     public float maxSpeed = 7;
@@ -10,13 +11,12 @@ public class player : PhysicsObject {
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     public string objectName;
+    public Collider2D attBox;
      // Use this for initialization
     void Awake () {
-        print("starting player");
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         objectName = spriteRenderer.name;
-        print("this player's name is " + objectName);
     }
 
     private void setAnimation(string name)
@@ -30,8 +30,6 @@ public class player : PhysicsObject {
 
         animator.SetBool("crouch_down", Input.GetKey("down"));
         animator.SetBool("crouch_up", Input.GetKeyUp("down"));
-
-        animator.SetBool("attack", Input.GetButtonDown("Fire"+name));
     }
 
     private void compute(string name, ref Vector2 move)
@@ -50,6 +48,7 @@ public class player : PhysicsObject {
             }
         }
     }
+
     // Update is called once per frame
     protected override void ComputeVelocity()
     {
@@ -87,12 +86,14 @@ public class player : PhysicsObject {
         {
             facing = false;
             spriteRenderer.flipX = !spriteRenderer.flipX;
+            print("attBox offset "+attBox.offset);
         }
 
         else if (move.x > 0.01f && facing == false)
         {
             facing = true;
             spriteRenderer.flipX = !spriteRenderer.flipX;
+            print("attBox offset " + attBox.offset);
         }
 
         //if (!flipSprite)

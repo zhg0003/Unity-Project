@@ -29,4 +29,11 @@ public class health : MonoBehaviour {
         if (currentHealth == 0)
             print("dead");
 	}
+
+    public void damage(int dmg)
+    {
+        print("damage called");
+        currentHealth -= dmg;
+        healthBar.value = (float)currentHealth / maxHealth;
+    }
 }
