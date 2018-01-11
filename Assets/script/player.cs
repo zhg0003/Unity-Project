@@ -86,6 +86,7 @@ public class player : PhysicsObject {
         {
             facing = false;
             spriteRenderer.flipX = !spriteRenderer.flipX;
+            attBox.offset = new Vector2((float)-2.3, (float)0.2);
             print("attBox offset "+attBox.offset);
         }
 
@@ -93,6 +94,7 @@ public class player : PhysicsObject {
         {
             facing = true;
             spriteRenderer.flipX = !spriteRenderer.flipX;
+            attBox.offset = new Vector2((float)0.0, (float)0.2);
             print("attBox offset " + attBox.offset);
         }
 

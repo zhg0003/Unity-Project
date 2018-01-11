@@ -286,6 +286,7 @@
     <Compile Include="Assets\script\attacktrigger.cs" />
     <Compile Include="Assets\script\health.cs" />
     <Compile Include="Assets\script\movingObject.cs" />
+    <Compile Include="Assets\script\pause.cs" />
     <Compile Include="Assets\script\PhysicsObject.cs" />
     <Compile Include="Assets\script\player.cs" />
     <Compile Include="Assets\script\playerattack.cs" />
