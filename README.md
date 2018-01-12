@@ -6,7 +6,9 @@ A simple 2d project that helps me navigating through unity GUI efficiently, unde
 	game object creation,  
 along with the purposes of some of the components such as rigidbody, collider, animator and others.  
   
-Disclaimer: I do not claim ownership of the sprite arts and codes used in this project.  
+Disclaimer: I do not claim ownership of the sprite arts and codes used in this project, unless specified otherwise in the file.  
+ninja sprite: https://www.assetstore.unity3d.com/en/#!/content/93901
+background: https://craftpix.net/freebies/free-fairy-tale-game-backgrounds/
 
 General notes (on going):  
 	-FixedUpdate() will be called every fixed framerate frames, so it is good to put your physics code here  
