@@ -17,10 +17,20 @@ public class playerattack : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
-        if (Input.GetKeyDown("f") && !attack)
+    void Update()
+    {
+
+        if (gameObject.name == "player")
+            attackDetect("_p1");
+        else
+            attackDetect("_p2");
+    }
+
+    private void attackDetect(string name)
+    {
+        if (Input.GetButtonDown("Fire"+name) && !attack)
         {
-            anim.SetBool("attack", true);
+            anim.SetTrigger("attack");
             attack = true;
             timer = attCD;
             trigger.enabled = true;

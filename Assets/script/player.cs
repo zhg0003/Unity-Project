@@ -17,6 +17,7 @@ public class player : PhysicsObject {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         objectName = spriteRenderer.name;
+        
     }
 
     private void setAnimation(string name)

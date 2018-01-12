@@ -8,24 +8,21 @@ public class health : MonoBehaviour {
     public int currentHealth;
     public int maxHealth;
     public Slider healthBar;
-    
+    public float iframe;
+    public Animator anim;
 	// Use this for initialization
 	void Awake () {
         maxHealth = 100;
         currentHealth = startingHealth;
         //healthBar = GetComponent<Slider>();
+        anim = GetComponent<Animator>();
         healthBar.value = currentHealth / maxHealth;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown("k"))
-        {
-            currentHealth -= 1;
-            healthBar.value = (float)currentHealth / maxHealth;
-            print("health bar value " + healthBar.value);
-            print("current health value " + currentHealth);
-        }
+        if (iframe > 0)
+            iframe -= Time.deltaTime;
         if (currentHealth == 0)
             print("dead");
 	}
@@ -33,7 +30,13 @@ public class health : MonoBehaviour {
     public void damage(int dmg)
     {
         print("damage called");
-        currentHealth -= dmg;
-        healthBar.value = (float)currentHealth / maxHealth;
+        if (iframe <= 0)//iframe less than 0 means can be damaged
+        {
+            anim.Play("hurt");
+            currentHealth -= dmg;
+            iframe = 2.0f;
+            healthBar.value = (float)currentHealth / maxHealth;
+        }
+        
     }
 }
