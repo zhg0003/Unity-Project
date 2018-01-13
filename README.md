@@ -1,16 +1,14 @@
-A simple 2d project that helps me navigating through unity GUI efficiently, understanding  
-	playerControl script,  
-	physics script,  
-	animation creation,  
-	sprite slicing,  
-	game object creation,  
+## Synopsis
+This is a simple 2d project that helps me navigating through unity GUI efficiently, understanding  
+playerControl script,  physics script,  animation creation,  sprite slicing, game object creation,  
 along with the purposes of some of the components such as rigidbody, collider, animator and others.  
   
-Disclaimer: I do not claim ownership of the sprite arts and codes used in this project, unless specified otherwise in the file.  
+## Disclaimer
+I do not claim ownership of the sprite arts and codes used in this project, unless specified otherwise in the file.  
 ninja sprite: https://www.assetstore.unity3d.com/en/#!/content/93901  
 background: https://craftpix.net/freebies/free-fairy-tale-game-backgrounds/
 
-General notes (on going):  
+## General notes (on going):  
 	-FixedUpdate() will be called every fixed framerate frames, so it is good to put your physics code here  
 	-In order to move an object, checking for collision is a must. Start with Rigidbody2D.Cast(),  
 		it will return number of collision when you trying to move an object to a specific distance in a  
