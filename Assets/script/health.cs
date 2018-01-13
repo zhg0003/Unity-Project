@@ -34,9 +34,24 @@ public class health : MonoBehaviour {
         {
             anim.Play("hurt");
             currentHealth -= dmg;
-            iframe = 2.0f;
+            iframe = 1.0f;
             healthBar.value = (float)currentHealth / maxHealth;
         }
         
+    }
+    public void heal(int value)
+    {
+        print("heal is called");
+        if (currentHealth <= 0)
+        {
+            print("player is dead lulz");
+        }
+        else
+        {
+            currentHealth += value;
+            if (currentHealth > maxHealth)
+                currentHealth = maxHealth;
+            healthBar.value = (float)currentHealth / maxHealth;
+        }
     }
 }
